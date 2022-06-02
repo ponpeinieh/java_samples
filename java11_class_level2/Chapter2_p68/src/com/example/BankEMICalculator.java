@@ -46,7 +46,7 @@ public class BankEMICalculator {
     }
 
     public double getMonthlypayment() {
-        return helper.calcMonthlyPayment(loanAmount);
+        return helper.calcMonthlyPayment();
     }
 
     public void setMonthlypayment(double monthlypayment) {
@@ -67,7 +67,7 @@ public class BankEMICalculator {
         double monthlyinterestRate = 0.9;
         double interestpermonth = monthlyinterestRate / loanTerm;
 
-        protected double calcMonthlyPayment(double loanAmount) {
+        protected double calcMonthlyPayment() {
             double EMI = (loanAmount * interestpermonth) / ((1.0) - ((1.0) / Math.pow(1.0 + interestpermonth, loanTerm)));
             return (Math.round(EMI));
         }
