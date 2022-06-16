@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -16,7 +17,7 @@ public class MapExample {
         partList.put("S002", "Black T-Shirt"); // Overwrite value
         //
         partList.put("T001", null);
-        //partList.put(null, null);
+        //partList.put(null, null); //runtime exception for TreeMap, but ok for HashMap
         Set<String> keys = partList.keySet();
 
         System.out.println("=== Part List ===");

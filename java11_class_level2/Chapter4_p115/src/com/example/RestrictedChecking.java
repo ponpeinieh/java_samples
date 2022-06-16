@@ -12,9 +12,11 @@ public class RestrictedChecking implements Accessible{
         this.PIN = PIN;
     }
 
+    @Override
     public boolean verifyPIN(int pin){
         return(pin == PIN);
     }
+    @Override
     public double getBalance(){
         return balance;
     }

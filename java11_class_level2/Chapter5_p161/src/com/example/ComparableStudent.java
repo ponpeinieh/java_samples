@@ -32,8 +32,8 @@ public class ComparableStudent implements Comparable<ComparableStudent> {
 
     @Override
     public int compareTo(ComparableStudent s) {
-        int result = this.name.compareTo(s.getName()); //按照name由小到大排序
-        //double result = this.gpa - s.gpa; //按照gpa由小到大排序
+        //int result = this.name.compareTo(s.getName()); //按照name由小到大排序
+        double result = this.gpa - s.gpa; //按照gpa由小到大排序
         
 //        if (result > 0) {
 //            return 1;
@@ -42,6 +42,6 @@ public class ComparableStudent implements Comparable<ComparableStudent> {
 //        } else {
 //            return 0;
 //        }
-        return result;
+        return (int)result;
     }
 }
