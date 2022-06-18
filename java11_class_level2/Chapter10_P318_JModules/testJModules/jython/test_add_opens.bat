@@ -1,0 +1,1 @@
+java --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED -jar jython-standalone-2.7.0.jar

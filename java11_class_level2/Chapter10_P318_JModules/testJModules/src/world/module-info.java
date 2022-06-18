@@ -1,0 +1,5 @@
+
+
+module world {
+    exports world;
+}
