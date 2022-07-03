@@ -6,7 +6,7 @@ package b;
  * and open the template in the editor.
  */
 import java.lang.reflect.InvocationTargetException;
-import x.X;
+//import x.X;
 
 //import y.Y; //error
 //import z.Z; //error

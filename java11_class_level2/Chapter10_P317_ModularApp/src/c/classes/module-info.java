@@ -6,5 +6,5 @@
 
 open module c
 {
-    exports x;
+    
 }

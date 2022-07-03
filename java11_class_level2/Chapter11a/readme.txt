@@ -1,0 +1,15 @@
+- 先使用netbeans
+	- 使用Java8來執行(亦即classpath, 非module形式)
+	- League, Soccer, Basketball都使用相同的'game' package name
+	- 先檢視League的classpath設定(soccer在前, basketball在後)
+	- 執行League project(顯示soccer結果)
+	- Main class中的gameType從soccer換成basketball, 重新執行
+	- 檢視錯誤(ArrayStoreException)
+	- 調整classpath順序(basketball在前, soccer在後)
+	- 執行League project(顯示basketball結果)
+- 在command line執行
+	- 進入到League project根目錄
+	- 確認jdk版本(java --version)
+	- 執行 java -cp dist/*;lib/Soccer_1pkg.jar;lib/display-ascii-0.1b.jar main.Main (ArrayStoreException錯誤)
+	- 執行 java -cp dist/*;lib/Basketball_1pkg.jar;lib/display-ascii-0.1b.jar main.Main (succeed)
+	- 執行 java -cp dist/*;lib/* main.Main (succeed)

@@ -1,0 +1,4 @@
+- 在command line執行jdeps
+	- 進入到League project根目錄
+	- 執行 jdeps -s lib/* dist/*
+	- 執行 jdeps --generate-module-info module-info-files lib/* dist/*

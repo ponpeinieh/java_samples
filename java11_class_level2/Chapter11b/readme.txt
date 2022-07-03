@@ -1,0 +1,10 @@
+- 先使用netbeans
+	- 使用Java8來執行(亦即classpath, 非module形式)
+	- League, Soccer, Basketball都使用不同的package name
+	- 執行League project(顯示soccer結果)
+	- Main class中的gameType從soccer換成basketball, 重新執行
+	- 執行League project(顯示basketball結果)
+- 在command line執行
+	- 進入到League project根目錄
+	- 確認jdk版本(java --version)
+	- 執行 java -cp dist/*;lib/* main.Main (succeed)

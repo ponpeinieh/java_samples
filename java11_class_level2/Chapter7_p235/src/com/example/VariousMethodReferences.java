@@ -17,7 +17,9 @@ public class VariousMethodReferences {
         StringComparator comp = new StringComparator();
         fruits.stream().sorted((f1, f2) -> comp.compare(f1, f2)).forEach(f -> System.out.println(f));
         //fruits.stream().sorted(comp::compare).forEach(f -> System.out.println(f));
-        //fruits.stream().sorted(String::compareTo).forEach(f -> System.out.println(f));
+        
+        // A method reference referencing an instance method having one argument actually has two arguments - the first argument is implicit - the instance on which the method is executed.
+        //fruits.stream().sorted(String::compareTo).forEach(f -> System.out.println(f)); 
         //
         fruits.stream().map(f -> new Fruit(f)).forEach(f -> System.out.println(f));
         //fruits.stream().map(Fruit::new).forEach(f -> System.out.println(f));
