@@ -1,0 +1,15 @@
+@startuml
+abstract class question.Answer
+class java.time.LocalDateTime
+class question.Choice
+class question.CorrectAnswer
+class question.Exam
+class question.ExamRecord
+class question.Question
+class question.ResponseAnswer
+enum question.QuestionType
+question.CorrectAnswer --|> question.Answer
+question.Exam ..> java.time.LocalDateTime
+question.Question ..> java.time.LocalDateTime
+question.ResponseAnswer --|> question.Answer
+@enduml
