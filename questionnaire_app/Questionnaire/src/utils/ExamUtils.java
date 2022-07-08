@@ -155,16 +155,21 @@ public class ExamUtils {
 
     public static List<Integer> checkChoiceAnswerMultiple(String answerString, Question q) throws Exception {
         String[] answers = answerString.split("\\W+");
-        if (Stream.of(answers).filter(a -> a.length() != 1).findAny().isPresent()) {
+        //if (Stream.of(answers).filter(a -> a.length() != 1).findAny().isPresent()) { //or use Arrays.stream()
+        if (Arrays.stream(answers).filter(a -> a.length() != 1).findAny().isPresent()) {
             throw new Exception("Input Error: Some answer is not exactly one character long.");
         }
         int length = q.getChoices().length;
         List<String> choiceLetters = IntStream.range(0, length).mapToObj(i -> String.valueOf((char) (i + 'A'))).collect(Collectors.toList());
-        if (Stream.of(answers).filter(a -> !choiceLetters.contains(a)).findAny().isPresent()) {
+        //if (Stream.of(answers).filter(a -> !choiceLetters.contains(a)).findAny().isPresent()) { //or use Arrays.stream()
+        if (Arrays.stream(answers).filter(a -> !choiceLetters.contains(a)).findAny().isPresent()) {
             throw new Exception("Input Error: Some answer is not a valid answer");
         }
-        List<Integer> answerIndices = Stream.of(answers).map(a -> choiceLetters.indexOf(a)).collect(Collectors.toList());
-        answerIndices.sort(Integer::compare);
+        //List<Integer> answerIndices = Stream.of(answers).mapToInt(a -> choiceLetters.indexOf(a)).boxed().collect(Collectors.toList()); 
+        //Above use mapToInt() to get a IntStream and then boxed() into Stream<Integer>, since IntStream has no collect() that accespt a Collector 
+        //Or as below use map() directly, which is simpler
+        List<Integer> answerIndices = Arrays.stream(answers).map(a -> choiceLetters.indexOf(a)).collect(Collectors.toList());
+        answerIndices.sort(Integer::compareTo); //Integer also has a static compare() , so we can use Integer::compare here too.
         return answerIndices;
     }
 }

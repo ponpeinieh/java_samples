@@ -2,6 +2,7 @@ package utils;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import question.Answer;
 import question.AnswerRecord;
 import question.Choice;
@@ -48,7 +49,7 @@ public class DisplayUtils {
         int order = 1;
         for (var q : qn.getQuestions()) {
             Answer answer = records[order - 1].getAnswer();
-            if (! answer.isUserAnswered()) {
+            if (!answer.isUserAnswered()) {
                 printQuestSimple(q, answer, order);
             }
             order++;
@@ -94,13 +95,19 @@ public class DisplayUtils {
             List<Choice> questionChoices = List.of(q.getChoices());
             switch (q.getType()) {
                 case SINGLE:
-                    Optional<Integer> index = choiceAnswers.stream().map(e -> questionChoices.indexOf(e)).findFirst();
+                    // below code also works, but since we are dealing with primitive integers here, so OptionalInt is better       
+//                    Optional<Integer> index = choiceAnswers.stream().map(e -> questionChoices.indexOf(e)).findFirst();
+//                    if (index.isPresent()) {
+//                        System.out.println((char) (index.get() + 'A'));
+//                    }
+                    // IntStream.findFirst() return a OptionalInt(). And use getAsInt() to get the int value
+                    OptionalInt index = choiceAnswers.stream().mapToInt(e -> questionChoices.indexOf(e)).findFirst();
                     if (index.isPresent()) {
-                        System.out.println((char) (index.get() + 'A'));
+                        System.out.println((char) (index.getAsInt() + 'A'));
                     }
                     break;
                 case MULTIPLE:
-                    choiceAnswers.stream().map(e -> questionChoices.indexOf(e)).forEach(i -> System.out.print((char) (i + 'A') + " "));
+                    choiceAnswers.stream().mapToInt(e -> questionChoices.indexOf(e)).forEach(i -> System.out.print((char) (i + 'A') + " "));
                     System.out.println();
                     break;
             }
