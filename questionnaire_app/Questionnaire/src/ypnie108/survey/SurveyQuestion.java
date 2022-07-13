@@ -1,11 +1,12 @@
 package ypnie108.survey;
 
 import java.time.LocalDateTime;
-import question.Choice;
-import question.Answer;
-import question.Question;
-import question.QuestionType;
-import question.RatingType;
+import java.util.List;
+import questionnaire.Choice;
+import questionnaire.Answer;
+import questionnaire.Question;
+import questionnaire.QuestionType;
+import questionnaire.RatingType;
 
 public class SurveyQuestion implements Question {
 
@@ -15,9 +16,9 @@ public class SurveyQuestion implements Question {
     private final String id;
     private final String content;
     private final QuestionType type;
-    private final String[] tags;
+    private final List<String> tags;
     private final LocalDateTime create_time;
-    private Choice[] choices;
+    private List<Choice> choices;
     private final RatingType ratingType;
 
     private SurveyQuestion(Builder b) {
@@ -52,7 +53,7 @@ public class SurveyQuestion implements Question {
     }
 
     @Override
-    public String[] getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
@@ -62,7 +63,7 @@ public class SurveyQuestion implements Question {
     }
 
     @Override
-    public Choice[] getChoices() {
+    public List<Choice> getChoices() {
         return choices;
     }
 
@@ -72,7 +73,7 @@ public class SurveyQuestion implements Question {
     }
 
     @Override
-    public void setChoices(Choice[] choices) {
+    public void setChoices(List<Choice> choices) {
         this.choices = choices;
     }
 
@@ -128,9 +129,9 @@ public class SurveyQuestion implements Question {
         private String id;
         private String content;
         private QuestionType type;
-        private String[] tags;
+        private List<String> tags;
         private LocalDateTime create_time;
-        private Choice[] choices;
+        private List<Choice> choices;
         private RatingType ratingType;
 
         public Builder id(String id) {
@@ -148,7 +149,7 @@ public class SurveyQuestion implements Question {
             return this;
         }
 
-        public Builder tags(String[] tags) {
+        public Builder tags(List<String> tags) {
             this.tags = tags;
             return this;
         }
@@ -158,7 +159,7 @@ public class SurveyQuestion implements Question {
             return this;
         }
 
-        public Builder choices(Choice[] choices) {
+        public Builder choices(List<Choice> choices) {
             this.choices = choices;
             return this;
         }

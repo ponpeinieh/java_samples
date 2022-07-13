@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ypnie108.exam;
 
-import question.Choice;
+import questionnaire.Choice;
+import questionnaire.Question;
 
 /**
  *
@@ -18,14 +15,14 @@ public class TextChoice implements Choice {
     private final String id;
     private final String content;
     private final int defaultOrder;
-    //private final Question question;
+    private final Question question;
 
     private TextChoice(Builder b) {
         this.serial = NEXT_SERIAL++;
         this.id = b.id;
         this.content = b.content;
         this.defaultOrder = b.defaultOrder;
-        //this.question = b.question;
+        this.question = b.question;
     }
 
     @Override
@@ -48,10 +45,11 @@ public class TextChoice implements Choice {
         return defaultOrder;
     }
 
-//    @Override
-//    public Question getQuestion() {
-//        return question;
-//    }
+    @Override
+    public Question getQuestion() {
+        return question;
+    }
+
     @Override
     public boolean isImageContent() {
         return false;
@@ -92,7 +90,7 @@ public class TextChoice implements Choice {
         private String id;
         private String content;
         private int defaultOrder;
-        //private Question question;
+        private Question question;
 
         public Builder id(String id) {
             this.id = id;
@@ -109,10 +107,11 @@ public class TextChoice implements Choice {
             return this;
         }
 
-//        public Builder question(Question question) {
-//            this.question = question;
-//            return this;
-//        }
+        public Builder question(Question question) {
+            this.question = question;
+            return this;
+        }
+
         public TextChoice build() {
             return new TextChoice(this);
         }

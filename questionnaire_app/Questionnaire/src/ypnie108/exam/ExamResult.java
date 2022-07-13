@@ -1,10 +1,11 @@
 package ypnie108.exam;
 
 import java.time.LocalDateTime;
-import question.AnswerRecord;
-import question.Questionnaire;
-import question.QuestionnaireResult;
-import question.User;
+import java.util.List;
+import questionnaire.AnswerRecord;
+import questionnaire.Questionnaire;
+import questionnaire.QuestionnaireResult;
+import questionnaire.User;
 
 /**
  *
@@ -18,7 +19,7 @@ public class ExamResult implements QuestionnaireResult {
     private double score;
     private boolean passed;
     private final LocalDateTime questionnaireTime;
-    private final AnswerRecord[] answerRecords;
+    private final List<AnswerRecord> answerRecords;
 
     private ExamResult(Builder b) {
         this.id = b.id;
@@ -61,7 +62,7 @@ public class ExamResult implements QuestionnaireResult {
     }
 
     @Override
-    public AnswerRecord[] getAnswerRecords() {
+    public List<AnswerRecord> getAnswerRecords() {
         return answerRecords;
     }
 
@@ -83,7 +84,7 @@ public class ExamResult implements QuestionnaireResult {
         private double score;
         private boolean passed;
         private LocalDateTime questionnaireTime;
-        private AnswerRecord[] answerRecords;
+        private List<AnswerRecord> answerRecords;
 
         public ExamResult build() {
             return new ExamResult(this);
@@ -119,7 +120,7 @@ public class ExamResult implements QuestionnaireResult {
             return this;
         }
 
-        public Builder answerRecords(AnswerRecord[] answerRecords) {
+        public Builder answerRecords(List<AnswerRecord> answerRecords) {
             this.answerRecords = answerRecords;
             return this;
         }

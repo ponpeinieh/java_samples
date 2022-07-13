@@ -1,8 +1,10 @@
 package ypnie108.exam;
 
-import question.Answer;
-import question.Choice;
-import question.QuestionType;
+import java.util.List;
+import questionnaire.Answer;
+import questionnaire.Choice;
+import questionnaire.Question;
+import questionnaire.QuestionType;
 
 /**
  *
@@ -13,10 +15,10 @@ public class GeneralAnswer implements Answer {
     private static int NEXT_SERIAL = 101;
     private final int serial;
     private final String id;
-//    private final Question question;
-    private final QuestionType type;
+    private final Question question;
+    private final QuestionType questionType;
     private boolean binaryAnswer;
-    private Choice[] choiceAnswer;
+    private List<Choice> choiceAnswer;
     private String textAnswer;
     private double ratingAnswer;
     private final boolean correctAnswer;
@@ -25,8 +27,8 @@ public class GeneralAnswer implements Answer {
     private GeneralAnswer(Builder b) {
         this.serial = NEXT_SERIAL++;
         this.id = b.id;
-//        this.question = b.question;
-        this.type = b.type;
+        this.question = b.question;
+        this.questionType = b.questionType;
         this.binaryAnswer = b.binaryAnswer;
         this.choiceAnswer = b.choiceAnswer;
         this.textAnswer = b.textAnswer;
@@ -45,14 +47,19 @@ public class GeneralAnswer implements Answer {
         return id;
     }
 
-//    @Override
-//    public Question getQuestion() {
-//        return question;
-//    }
+    @Override
+    public Question getQuestion() {
+        return question;
+    }
+
+    @Override
+    public QuestionType getQuestionType() {
+        return questionType;
+    }
 
     @Override
     public boolean isBinaryAnswer() {
-        return type == QuestionType.BINARY;
+        return questionType == QuestionType.BINARY;
     }
 
     @Override
@@ -66,11 +73,11 @@ public class GeneralAnswer implements Answer {
 
     @Override
     public boolean isChoiceAnswer() {
-        return type == QuestionType.MULTIPLE || type == QuestionType.SINGLE;
+        return questionType == QuestionType.MULTIPLE || questionType == QuestionType.SINGLE;
     }
 
     @Override
-    public Choice[] getChoiceAnswer() {
+    public List<Choice> getChoiceAnswer() {
         if (isChoiceAnswer()) {
             return choiceAnswer;
         } else {
@@ -80,7 +87,7 @@ public class GeneralAnswer implements Answer {
 
     @Override
     public boolean isTextAnswer() {
-        return type == QuestionType.TEXT || type == QuestionType.TEXTFIELD;
+        return questionType == QuestionType.TEXT || questionType == QuestionType.TEXTFIELD;
     }
 
     @Override
@@ -99,7 +106,7 @@ public class GeneralAnswer implements Answer {
 
     @Override
     public boolean isRatingAnswer() {
-        return type == QuestionType.RATING;
+        return questionType == QuestionType.RATING;
     }
 
     @Override
@@ -122,7 +129,7 @@ public class GeneralAnswer implements Answer {
     }
 
     @Override
-    public void setChoiceAnswer(Choice[] choiceAnswer) {
+    public void setChoiceAnswer(List<Choice> choiceAnswer) {
         this.choiceAnswer = choiceAnswer;
     }
 
@@ -180,10 +187,10 @@ public class GeneralAnswer implements Answer {
     public static class Builder {
 
         private String id;
-//        private Question question;
-        private QuestionType type;
+        private Question question;
+        private QuestionType questionType;
         private boolean binaryAnswer;
-        private Choice[] choiceAnswer;
+        private List<Choice> choiceAnswer;
         private String textAnswer;
 //        private double ratingAnswer;
         private boolean correctAnswer;
@@ -193,14 +200,14 @@ public class GeneralAnswer implements Answer {
             this.id = id;
             return this;
         }
-//
-//        public Builder question(Question question) {
-//            this.question = question;
-//            return this;
-//        }
 
-        public Builder questionType(QuestionType type) {
-            this.type = type;
+        public Builder question(Question question) {
+            this.question = question;
+            return this;
+        }
+
+        public Builder questionType(QuestionType questionType) {
+            this.questionType = questionType;
             return this;
         }
 
@@ -209,7 +216,7 @@ public class GeneralAnswer implements Answer {
             return this;
         }
 
-        public Builder choiceAnswer(Choice[] choiceAnswer) {
+        public Builder choiceAnswer(List<Choice> choiceAnswer) {
             this.choiceAnswer = choiceAnswer;
             return this;
         }
@@ -223,7 +230,6 @@ public class GeneralAnswer implements Answer {
 //            this.ratingAnswer = ratingAnswer;
 //            return this;
 //        }
-
         public Builder correctAnswer(boolean correctAnswer) {
             this.correctAnswer = correctAnswer;
             return this;
@@ -233,6 +239,7 @@ public class GeneralAnswer implements Answer {
             this.userAnswered = userAnswered;
             return this;
         }
+
         public GeneralAnswer build() {
             return new GeneralAnswer(this);
         }

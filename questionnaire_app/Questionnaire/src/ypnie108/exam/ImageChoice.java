@@ -1,6 +1,7 @@
 package ypnie108.exam;
 
-import question.Choice;
+import questionnaire.Choice;
+import questionnaire.Question;
 
 /**
  *
@@ -14,14 +15,14 @@ public class ImageChoice implements Choice {
     private final String id;
     private final String content;
     private final int defaultOrder;
-    //private final Question question;
+    private final Question question;
 
     private ImageChoice(Builder b) {
         this.serial = NEXT_SERIAL++;
         this.id = b.id;
         this.content = b.content;
         this.defaultOrder = b.defaultOrder;
-        //this.question = b.question;
+        this.question = b.question;
     }
 
     @Override
@@ -44,10 +45,10 @@ public class ImageChoice implements Choice {
         return defaultOrder;
     }
 
-//    @Override
-//    public Question getQuestion() {
-//        return question;
-//    }
+    @Override
+    public Question getQuestion() {
+        return question;
+    }
 
     @Override
     public boolean isImageContent() {
@@ -89,7 +90,7 @@ public class ImageChoice implements Choice {
         private String id;
         private String content;
         private int defaultOrder;
-//        private Question question;
+        private Question question;
 
         public Builder id(String id) {
             this.id = id;
@@ -106,10 +107,10 @@ public class ImageChoice implements Choice {
             return this;
         }
 
-//        public Builder question(Question question) {
-//            this.question = question;
-//            return this;
-//        }
+        public Builder question(Question question) {
+            this.question = question;
+            return this;
+        }
 
         public ImageChoice build() {
             return new ImageChoice(this);

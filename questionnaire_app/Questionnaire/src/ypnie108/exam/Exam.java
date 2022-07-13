@@ -2,8 +2,9 @@
 package ypnie108.exam;
 
 import java.time.LocalDateTime;
-import question.Question;
-import question.Questionnaire;
+import java.util.List;
+import questionnaire.Question;
+import questionnaire.Questionnaire;
 
 public class Exam implements Questionnaire {
 
@@ -12,8 +13,8 @@ public class Exam implements Questionnaire {
     private final int serial;
     final private String id;
     final private String title;
-    final private Question[] questions;
-    final private double[] questionScores;
+    final private List<Question> questions;
+    final private List<Double> questionScores;
     final private boolean randomOrder;
     final private int durationInSecs;
     final private double passScore;
@@ -49,12 +50,12 @@ public class Exam implements Questionnaire {
     }
 
     @Override
-    public Question[] getQuestions() {
+    public List<Question> getQuestions() {
         return questions;
     }
 
     @Override
-    public double[] getQuestionScores() {
+    public List<Double>  getQuestionScores() {
         return questionScores;
     }
 
@@ -101,8 +102,8 @@ public class Exam implements Questionnaire {
 
         private String id;
         private String title;
-        private Question[] questions;
-        private double[] questionScores;
+        private List<Question>  questions;
+        private List<Double>  questionScores;
         private boolean randomOrder;
         private int durationInSecs;
         private double passScore;
@@ -124,12 +125,12 @@ public class Exam implements Questionnaire {
             return this;
         }
 
-        public Builder questions(Question[] questions) {
+        public Builder questions(List<Question>  questions) {
             this.questions = questions;
             return this;
         }
 
-        public Builder questionScores(double[] questionScores) {
+        public Builder questionScores(List<Double>  questionScores) {
             this.questionScores = questionScores;
             return this;
         }
